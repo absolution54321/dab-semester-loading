@@ -2,21 +2,13 @@
 const XLSX = require('exceljs')
 const { CONSTANTS } = require('./contansts')
 
-exports.export = function (payload) {
+exports.generate = function (payload) {
     let courses = payload.courses
     courses = courses.map((course) => {
         course.patt = course.pattern.split('-')
         return course
     })
     // console.log(courses)
-    /*x = {
-        year: year.value,
-        term: term.value,
-        program: program.value,
-        tep: totalEnrollementPlanned.value,
-        pstud: plannedStudents.value,
-        pattern: pattern.value,
-    }*/
     // let courses = CONSTANTS.TERMS[Number(payload.term.slice(-1))] // fetch courses for term
     let total_sections = Math.ceil(payload.tep / payload.pstud) // calculate no. of sections required
     let sections = []
@@ -40,7 +32,6 @@ exports.export = function (payload) {
             if (course.patt.length > 1) {
                 layouts.push(layout)
                 layout = []
-                // layout.push(course.id)
                 layout.push('')
                 layout.push(sections[i])
                 layout.push(payload.pstud)
@@ -56,7 +47,7 @@ exports.export = function (payload) {
         }
     }
     payload['rows'] = layouts
-    const xls = new ExcelGenerator(payload)
+    const xls = new ExcelGenerator(payload, payload.filename)
     xls.init()
     xls.process()
 }
@@ -64,9 +55,11 @@ exports.export = function (payload) {
 class ExcelGenerator {
     #wb = null
     payload = null
-    constructor(payload) {
+    filename = null
+    constructor(payload, filename) {
         this.#wb = new XLSX.Workbook()
         this.payload = payload
+        this.filename = filename
     }
     init() {
         this.#wb.creator = 'dab.loader'
@@ -80,18 +73,7 @@ class ExcelGenerator {
             name: 'Semster Loading',
             ref: 'A10',
             headerRow: true,
-            columns: [
-                { name: 'Course ID' },
-                { name: 'Section' },
-                { name: 'Planned Students' },
-                { name: 'Component' },
-                { name: 'Hours/Week' },
-                { name: 'Pattern' },
-                { name: 'Room Type' },
-                { name: 'Final Exam?' },
-                { name: 'Recommended Instructor' },
-                { name: 'Comments' },
-            ],
+            columns: CONSTANTS.TABLE_COLS,
             rows: this.payload.rows,
         })
     }
@@ -137,7 +119,7 @@ class ExcelGenerator {
         this.#save()
     }
     #save() {
-        this.#wb.xlsx.writeFile('aa.xlsx')
+        this.#wb.xlsx.writeFile(this.filename)
     }
 }
 
@@ -151,7 +133,7 @@ class ExcelGenerator {
 xl.init()
 xl.process()*/
 
-this.export({
+/*this.export({
     year: '2021',
     term: 'AAL01',
     program: 'B018',
@@ -165,3 +147,4 @@ this.export({
         { id: 'DAB103 - Analytic Tools And Decision Making', pattern: '3-2' },
     ],
 })
+*/

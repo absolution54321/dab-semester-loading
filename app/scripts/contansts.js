@@ -27,4 +27,17 @@ exports.CONSTANTS = CONSTANTS = {
         ],
         4: [`DAB400 - Supply Chain Analytics`, `DAB401 - Financial Analytics`, `DAB402 - Capstone Project`],
     },
+
+    TABLE_COLS: [
+        { name: 'Course ID' },
+        { name: 'Section' },
+        { name: 'Planned Students' },
+        { name: 'Component' },
+        { name: 'Hours/Week' },
+        { name: 'Pattern' },
+        { name: 'Room Type' },
+        { name: 'Final Exam?' },
+        { name: 'Recommended Instructor' },
+        { name: 'Comments' },
+    ],
 }
