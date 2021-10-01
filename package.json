@@ -1,0 +1,28 @@
+{
+  "name": "dab-semester-loading",
+  "version": "1.0.0",
+  "description": "This application is made for St. Clair College, Windsor, ON faculties.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/absolution54321/dab-semester-loading.git"
+  },
+  "keywords": [],
+  "author": "shrutarshi.saha",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/absolution54321/dab-semester-loading/issues"
+  },
+  "homepage": "https://github.com/absolution54321/dab-semester-loading#readme",
+  "devDependencies": {
+    "electron": "15.0.0"
+  },
+  "dependencies": {
+    "@electron/remote": "^2.0.1",
+    "exceljs": "^4.3.0",
+    "materialize-css": "^1.0.0-rc.2"
+  }
+}
