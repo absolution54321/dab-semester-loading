@@ -4,7 +4,8 @@
   "description": "This application is made for St. Clair College, Windsor, ON faculties.",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "package-win": "electron-packager . --overwrite --asar --platform=win32 --arch=ia32 --icon=app/assets/icons/icon.ico --prune=true --out=release-builds --version-string.CompanyName=ss --version-string.FileDescription=ss --version-string.ProductName=\"DAB - Semester Loader\""
   },
   "repository": {
     "type": "git",
@@ -18,7 +19,8 @@
   },
   "homepage": "https://github.com/absolution54321/dab-semester-loading#readme",
   "devDependencies": {
-    "electron": "15.0.0"
+    "electron": "15.0.0",
+    "electron-packager": "^15.4.0"
   },
   "dependencies": {
     "@electron/remote": "^2.0.1",

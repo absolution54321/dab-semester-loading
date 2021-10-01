@@ -1,6 +1,7 @@
 .vscode
 .prettierrc
 *.xlsx
+release-builds/
 
 # Logs
 logs
